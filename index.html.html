@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BIBLE CHALLENGE ESPECIAL: JOÃO 2026 - Versão 8</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts: Montserrat, Orbitron, Rajdhani, Share Tech Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Orbitron:wght@700;800;900&family=Rajdhani:wght@600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            orbitron: ['Orbitron', 'sans-serif'],
+            tech: ['Rajdhani', 'sans-serif'],
+            mono: ['Share Tech Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              bg: '#04060a',
+              card: '#0b0f19',
+              cardBorder: '#161c2d',
+              cyan: '#00C2CB',
+              cyanHover: '#16D7E0',
+              pink: '#e11d48',
+              pinkHover: '#f43f5e',
+              gold: '#fbbf24',
+              goldHover: '#f59e0b',
+              green: '#10b981'
+            }
+          },
+          boxShadow: {
+            'glow-cyan': '0 0 30px rgba(0, 194, 203, 0.45)',
+            'glow-pink': '0 0 30px rgba(225, 29, 72, 0.45)',
+            'glow-gold': '0 0 25px rgba(251, 191, 36, 0.45)',
+            'glow-green': '0 0 35px rgba(16, 185, 129, 0.55)',
+            'glow-red': '0 0 35px rgba(239, 68, 68, 0.55)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #04060a; }
+    ::-webkit-scrollbar-thumb { background: #161c2d; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00C2CB; }
+
+    /* Fundo fiel da Versão 5/6/8 com matriz de pontos e iluminação ciano/magenta */
+    body {
+      background-color: #04060a;
+      background-image: 
+        radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.07) 1.2px, transparent 0),
+        radial-gradient(circle at 12% 25%, rgba(0, 194, 203, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 88% 25%, rgba(225, 29, 72, 0.16) 0%, transparent 45%);
+      background-size: 22px 22px, 100% 100%, 100% 100%;
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    /* Logo Estilizado */
+    .logo-bible {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .i-custom {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 0.55em;
+      color: transparent;
+    }
+    .i-custom::before, .i-custom::after {
+      content: '';
+      position: absolute;
+      width: 0.16em;
+      height: 0.82em;
+      background-color: #00C2CB;
+      border-radius: 2px;
+    }
+    .i-custom::before { left: 0.06em; }
+    .i-custom::after { right: 0.06em; }
+
+    /* Efeitos de desfoque e desativação de card */
+    .card-dimmed {
+      opacity: 0.35;
+      filter: grayscale(40%);
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+    .card-active-p1 {
+      border-color: #00C2CB !important;
+      box-shadow: 0 0 35px rgba(0, 194, 203, 0.6) !important;
+      transition: all 0.3s ease;
+    }
+    .card-active-p2 {
+      border-color: #e11d48 !important;
+      box-shadow: 0 0 35px rgba(225, 29, 72, 0.6) !important;
+      transition: all 0.3s ease;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-pop-in {
+      animation: popIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+  </style>
+</head>
+<body class="text-white font-sans antialiased select-none min-h-screen flex flex-col justify-between p-3 md:p-5" ondblclick="toggleFullScreenIfAudience(event)">
+
+  <!-- =================================================================== -->
+  <!-- 1. CONTAINER TELA DA PLATEIA (MODO AUDIENCE V8)                     -->
+  <!-- =================================================================== -->
+  <div id="audience-view" class="hidden flex-col items-center justify-between min-h-screen w-full py-4 px-6">
+    <!-- BARRA SUPERIOR PLATEIA (SEM O TEXTO V6/V8) -->
+    <div class="w-full flex justify-end items-center px-2 mb-2">
+      <button id="audience-fullscreen-btn" onclick="toggleFullScreen()" class="bg-slate-900/80 hover:bg-slate-800 text-xs text-slate-300 border border-slate-700 px-3.5 py-1.5 rounded-xl transition flex items-center gap-2 cursor-pointer shadow-md">
+        <i class="fa-solid fa-expand"></i> Ativar Tela Cheia
+      </button>
+    </div>
+
+    <!-- HEADER LOGO CENTRALIZADO PLATEIA -->
+    <div class="flex flex-col items-center text-center my-2">
+      <div id="audience-logo-custom-container" class="hidden mb-2">
+        <img id="audience-logo-img" src="" alt="Quiz Logo" class="max-h-28 object-contain rounded-xl" />
+      </div>
+      <div id="audience-logo-text-container" class="flex flex-col items-center">
+        <h1 class="logo-bible text-5xl md:text-7xl text-white leading-none tracking-tight">
+          B<span class="i-custom">I</span>BLE
+        </h1>
+        <span class="font-tech font-extrabold text-xl md:text-3xl text-white tracking-[0.25em] uppercase -mt-1 mb-1">
+          CHALLENGE
+        </span>
+        <div class="bg-brand-cyan text-black px-5 py-1 rounded-md shadow-glow-cyan">
+          <span class="font-tech font-extrabold text-xs md:text-base tracking-wider uppercase">
+            ESPECIAL : <span class="font-black">JOÃO</span>
+          </span>
+        </div>
+        <span class="font-orbitron font-extrabold text-2xl md:text-3xl text-white tracking-widest mt-1">
+          2026
+        </span>
+      </div>
+
+      <!-- BADGE DE VALOR DA PERGUNTA (AMPLIADO V8) -->
+      <div class="mt-6 md:mt-8 bg-brand-card/95 border-2 border-brand-cyan/50 px-10 md:px-14 py-3.5 md:py-4 rounded-2xl text-center shadow-glow-cyan">
+        <span class="text-xs md:text-sm font-tech text-slate-300 uppercase tracking-[0.2em] block font-bold mb-1">ESTA PERGUNTA VALE</span>
+        <span class="font-orbitron font-black text-3xl md:text-5xl text-brand-cyan tracking-wider drop-shadow-md">
+          <span id="audience-question-val-display">10</span> PONTOS
+        </span>
+      </div>
+    </div>
+
+    <!-- BANNER TOPO ACIONAMENTO RESPOSTA (PLATEIA) -->
+    <div id="audience-buzzer-banner" class="w-full max-w-6xl my-4 hidden">
+      <div id="audience-buzzer-card" class="bg-brand-card border-2 rounded-3xl p-6 text-center shadow-2xl transition-all duration-300">
+        <span class="text-sm font-tech font-extrabold tracking-[0.2em] text-slate-300 uppercase block mb-1">
+          ⚡ APERTOU O BOTÃO PRIMEIRO!
+        </span>
+        <h2 id="audience-buzzer-name" class="font-orbitron font-black text-5xl md:text-6xl lg:text-7xl uppercase tracking-wider my-2">
+          PARTICIPANTE 1
+        </h2>
+        <span class="text-sm font-tech text-slate-400 uppercase tracking-widest font-bold">
+          Respondendo a Pergunta...
+        </span>
+      </div>
+    </div>
+
+    <!-- PAINEL CENTRAL PLATEIA (AMPLIADO E POSICIONADO MAIS ABAIXO V8) -->
+    <div class="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-8 my-auto items-center px-2 py-4">
+      <!-- CARD JOGADOR 1 -->
+      <div id="audience-p1-card" class="bg-brand-card/95 border-2 border-brand-cardBorder rounded-3xl p-8 flex flex-col items-center justify-between min-h-[340px] md:min-h-[380px] transition-all duration-300 shadow-2xl">
+        <div class="bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/40 font-tech font-extrabold px-6 py-1.5 rounded-full text-sm uppercase tracking-widest">
+          JOGADOR 1
+        </div>
+        <h3 id="audience-p1-name" class="font-orbitron font-black text-4xl md:text-5xl lg:text-6xl text-white my-4 uppercase text-center tracking-wide leading-tight drop-shadow-lg">
+          Participante 1
+        </h3>
+        <div class="w-full bg-black/70 border border-white/10 rounded-2xl py-5 text-center shadow-inner">
+          <span class="text-xs md:text-sm font-tech text-slate-400 uppercase tracking-widest block mb-1 font-bold">PONTUAÇÃO</span>
+          <span id="audience-p1-score" class="font-orbitron font-black text-6xl md:text-7xl lg:text-8xl text-brand-cyan drop-shadow-md">0</span>
+        </div>
+      </div>
+
+      <!-- CRONÔMETRO CENTRAL -->
+      <div class="flex flex-col items-center justify-center my-4 md:my-0">
+        <div class="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 flex items-center justify-center">
+          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 256 256">
+            <circle cx="128" cy="128" r="110" stroke="rgba(255,255,255,0.08)" stroke-width="16" fill="none" />
+            <circle id="audience-timer-ring" cx="128" cy="128" r="110" stroke="#00C2CB" stroke-width="16" fill="none" stroke-dasharray="691.1" stroke-dashoffset="0" stroke-linecap="round" class="transition-all duration-300" />
+          </svg>
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+            <span id="audience-timer-display" class="font-orbitron font-black text-7xl md:text-8xl lg:text-9xl text-white leading-none drop-shadow-lg">
+              60
+            </span>
+            <span id="audience-timer-label" class="font-tech font-bold text-xs md:text-sm lg:text-base text-slate-400 uppercase tracking-[0.25em] mt-2">
+              SEGUNDOS
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD JOGADOR 2 -->
+      <div id="audience-p2-card" class="bg-brand-card/95 border-2 border-brand-cardBorder rounded-3xl p-8 flex flex-col items-center justify-between min-h-[340px] md:min-h-[380px] transition-all duration-300 shadow-2xl">
+        <div class="bg-brand-pink/20 text-brand-pink border border-brand-pink/40 font-tech font-extrabold px-6 py-1.5 rounded-full text-sm uppercase tracking-widest">
+          JOGADOR 2
+        </div>
+        <h3 id="audience-p2-name" class="font-orbitron font-black text-4xl md:text-5xl lg:text-6xl text-white my-4 uppercase text-center tracking-wide leading-tight drop-shadow-lg">
+          Participante 2
+        </h3>
+        <div class="w-full bg-black/70 border border-white/10 rounded-2xl py-5 text-center shadow-inner">
+          <span class="text-xs md:text-sm font-tech text-slate-400 uppercase tracking-widest block mb-1 font-bold">PONTUAÇÃO</span>
+          <span id="audience-p2-score" class="font-orbitron font-black text-6xl md:text-7xl lg:text-8xl text-brand-pink drop-shadow-md">0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RODAPÉ PLATEIA -->
+    <footer class="text-[11px] font-tech text-slate-500 uppercase tracking-widest mt-4">
+      BIBLE CHALLENGE ESPECIAL: JOÃO 2026
+    </footer>
+  </div>
+
+
+  <!-- =================================================================== -->
+  <!-- 2. CONTAINER PAINEL DO ORGANIZADOR (VERSÃO 8)                       -->
+  <!-- =================================================================== -->
+  <div id="organizer-view" class="flex flex-col justify-between min-h-screen w-full max-w-7xl mx-auto space-y-4">
+    
+    <!-- BARRA SUPERIOR DE TOPO -->
+    <header class="flex flex-wrap items-center justify-between gap-3 bg-brand-card/90 border border-brand-cardBorder p-3 rounded-2xl backdrop-blur-md">
+      <!-- LOGO TOPO ESQUERDO -->
+      <div class="flex items-center space-x-3">
+        <div class="flex flex-col">
+          <div class="flex items-center space-x-1.5">
+            <span class="logo-bible text-xl text-white leading-none">B<span class="i-custom">I</span>BLE</span>
+            <span class="font-tech font-bold text-xs text-white tracking-widest">CHALLENGE</span>
+          </div>
+          <div class="bg-brand-cyan text-black px-2 py-0.2 rounded text-[10px] font-tech font-black tracking-wider uppercase mt-0.5">
+            ESPECIAL : JOÃO <span class="text-black font-extrabold">2026 (V8)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTÕES AÇÕES SUPERIORES -->
+      <div class="flex flex-wrap items-center gap-2">
+        <button onclick="openAudienceWindow()" class="bg-brand-cyan text-black hover:bg-brand-cyanHover px-3 py-1.5 rounded-xl font-tech font-extrabold text-xs uppercase tracking-wider transition flex items-center gap-1.5 cursor-pointer shadow-glow-cyan">
+          <i class="fa-solid fa-desktop"></i> Abrir Tela da Plateia
+        </button>
+
+        <button id="serial-connect-btn" onclick="toggleSerialConnection()" class="bg-slate-900 border border-slate-700 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl font-tech font-bold text-xs uppercase tracking-wider transition flex items-center gap-2 cursor-pointer">
+          <span id="serial-status-dot" class="w-2 h-2 rounded-full bg-rose-500"></span>
+          <span id="serial-btn-text">ESP32 Off &bull; Conectar</span>
+        </button>
+
+        <button onclick="toggleSound()" id="sound-toggle-btn" class="bg-slate-900 border border-slate-700 text-slate-300 hover:text-white p-2 rounded-xl text-xs transition cursor-pointer" title="Alternar Som">
+          <i id="sound-icon" class="fa-solid fa-volume-high"></i>
+        </button>
+
+        <button onclick="openEspModal()" class="bg-slate-900 border border-slate-700 text-slate-300 hover:text-white p-2 rounded-xl text-xs transition cursor-pointer" title="Código ESP32">
+          <i class="fa-solid fa-microchip"></i>
+        </button>
+
+        <button onclick="openSettingsModal()" class="bg-slate-900 border border-slate-700 text-slate-300 hover:text-white p-2 rounded-xl text-xs transition cursor-pointer" title="Configurações">
+          <i class="fa-solid fa-gear"></i>
+        </button>
+      </div>
+    </header>
+
+
+    <!-- CARD DE CONTROLE DE PONTOS DA PERGUNTA (AJUSTADO BOTÕES +5, +10, +25 V8) -->
+    <div class="bg-brand-card/90 border border-brand-cardBorder rounded-2xl p-3.5 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-brand-cyan/20 border border-brand-cyan/40 flex items-center justify-center text-brand-cyan">
+          <i class="fa-solid fa-scroll text-lg"></i>
+        </div>
+        <div>
+          <span class="text-[10px] font-tech text-slate-400 uppercase tracking-widest block font-bold">PONTOS DA PERGUNTA</span>
+          <div class="flex items-center space-x-2">
+            <input type="number" id="question-val-input" value="10" min="1" max="999" onchange="updateQuestionValue()" class="w-16 bg-black border border-brand-cyan/50 text-center font-orbitron font-black text-xl text-brand-cyan rounded-lg p-1 outline-none focus:border-brand-cyan" />
+            <div class="flex items-center space-x-1">
+              <button onclick="addQuestionValue(5)" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-tech font-bold px-2.5 py-1.5 rounded-lg border border-slate-700 active:scale-95 transition" title="Somar +5 ao valor atual">+5</button>
+              <button onclick="addQuestionValue(10)" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-tech font-bold px-2.5 py-1.5 rounded-lg border border-slate-700 active:scale-95 transition" title="Somar +10 ao valor atual">+10</button>
+              <button onclick="addQuestionValue(25)" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-tech font-bold px-2.5 py-1.5 rounded-lg border border-slate-700 active:scale-95 transition" title="Somar +25 ao valor atual">+25</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTÃO DESFAZER CENTRALIZADO -->
+      <div>
+        <button onclick="undoLastAction()" class="bg-slate-900 hover:bg-slate-800 text-brand-cyan border border-brand-cyan/40 px-4 py-2 rounded-xl font-tech font-extrabold text-xs uppercase tracking-wider transition flex items-center gap-2 cursor-pointer">
+          <i class="fa-solid fa-rotate-left"></i> Desfazer Última Rodada
+        </button>
+      </div>
+
+      <!-- MULTIPLICADOR BASE INDICATOR -->
+      <div class="text-right">
+        <span class="text-[10px] font-tech text-slate-400 uppercase tracking-widest block font-bold">MULTIPLICADOR BASE</span>
+        <span class="font-tech font-bold text-xs text-slate-300">
+          Base: <span id="base-multiplier-display">1</span>x &bull; Total: <span id="effective-points-display" class="text-brand-gold font-bold">10</span> pts
+        </span>
+      </div>
+    </div>
+
+
+    <!-- BANNER DESTACADO DE ACIONAMENTO DO BUZZER -->
+    <div id="org-buzzer-banner" class="w-full hidden transition-all duration-300">
+      <div id="org-buzzer-card" class="bg-brand-card border-2 rounded-2xl p-4 text-center shadow-2xl">
+        <span class="text-xs font-tech font-extrabold tracking-widest text-slate-300 uppercase block mb-1">
+          ⚡ RESPOSTA ACIONADA!
+        </span>
+        <h2 id="org-buzzer-name" class="font-orbitron font-black text-3xl md:text-5xl uppercase tracking-wider my-1">
+          PARTICIPANTE 1
+        </h2>
+        <span class="text-xs font-tech text-slate-400 uppercase tracking-widest">
+          Tempo de resposta iniciado!
+        </span>
+      </div>
+    </div>
+
+
+    <!-- PAINEL CENTRAL DE 3 COLUNAS PRINCIPAL V8 -->
+    <main class="grid grid-cols-1 md:grid-cols-3 gap-5 my-auto items-stretch">
+
+      <!-- ================= JOGADOR 1 (COLUNA ESQUERDA) ================= -->
+      <div id="org-p1-card" class="bg-brand-card/90 border-2 border-brand-cardBorder rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 space-y-4">
+        <!-- HEADER JOGADOR 1 -->
+        <div class="flex items-center justify-between">
+          <div class="bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan text-[11px] font-tech font-extrabold px-3 py-1 rounded-full uppercase">
+            <i class="fa-solid fa-user mr-1"></i> JOGADOR 1 (ATALHO: A)
+          </div>
+          <span id="p1-status-pill" class="text-[10px] font-tech font-bold text-slate-400 bg-black/50 border border-white/5 px-2.5 py-0.5 rounded-full uppercase">
+            Aguardando
+          </span>
+        </div>
+
+        <!-- NOME INPUT JOGADOR 1 (ATUALIZAÇÃO EM TEMPO REAL SEM ATRASO V8) -->
+        <div class="bg-black/60 border border-white/10 rounded-xl p-2 text-center">
+          <input type="text" id="p1-name-input" value="Participante 1" oninput="updatePlayerNames()" onkeyup="updatePlayerNames()" class="w-full bg-transparent text-center font-orbitron font-bold text-xl text-white outline-none focus:text-brand-cyan uppercase" />
+        </div>
+
+        <!-- CAIXA DE PONTUAÇÃO TOTAL JOGADOR 1 -->
+        <div class="bg-black/80 border border-white/10 rounded-xl py-4 text-center">
+          <span class="text-[10px] font-tech text-slate-400 uppercase tracking-widest block mb-1">PONTUAÇÃO TOTAL</span>
+          <div class="font-orbitron font-black text-6xl text-brand-cyan drop-shadow-md">
+            <span id="p1-score-display">0</span>
+          </div>
+        </div>
+
+        <!-- BOTÃO BUZZER JOGADOR 1 -->
+        <div class="flex flex-col items-center justify-center">
+          <button id="p1-buzzer-btn" onclick="triggerBuzzer(1)" class="w-24 h-24 bg-brand-cyan hover:bg-brand-cyanHover text-black rounded-full flex flex-col items-center justify-center shadow-glow-cyan transition-all transform active:scale-95 cursor-pointer">
+            <i class="fa-solid fa-hand-pointer text-2xl mb-1"></i>
+            <span class="text-[9px] font-tech font-black uppercase tracking-wider">TECLA A</span>
+          </button>
+        </div>
+
+        <!-- AJUSTE MANUAL JOGADOR 1 -->
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-[10px] font-tech text-slate-400 uppercase font-bold">Ajuste Manual:</span>
+          <div class="flex space-x-1">
+            <button onclick="adjustScore(1, -10)" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-[11px] font-tech font-bold px-2 py-1 rounded border border-slate-700">-10</button>
+            <button onclick="adjustScore(1, -5)" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-[11px] font-tech font-bold px-2 py-1 rounded border border-slate-700">-5</button>
+            <button onclick="adjustScore(1, 5)" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-[11px] font-tech font-bold px-2 py-1 rounded border border-slate-700">+5</button>
+            <button onclick="adjustScore(1, 10)" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-[11px] font-tech font-bold px-2 py-1 rounded border border-slate-700">+10</button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ================= COLUNA CENTRAL (CRONÔMETRO E BOTÕES CERTA/ERRADA V8) ================= -->
+      <div class="bg-brand-card/90 border-2 border-brand-cardBorder rounded-2xl p-4 flex flex-col justify-between items-center text-center space-y-3">
+        <!-- STATUS CRONÔMETRO -->
+        <div class="w-full">
+          <span id="timer-status-badge" class="bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan text-[11px] font-tech font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+            🟢 PRONTO PARA RESPONDER
+          </span>
+        </div>
+
+        <!-- CRONÔMETRO CENTRAL -->
+        <div class="relative w-44 h-44 flex items-center justify-center my-1">
+          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 256 256">
+            <circle cx="128" cy="128" r="110" stroke="rgba(255,255,255,0.08)" stroke-width="14" fill="none" />
+            <circle id="org-timer-ring" cx="128" cy="128" r="110" stroke="#00C2CB" stroke-width="14" fill="none" stroke-dasharray="691.1" stroke-dashoffset="0" stroke-linecap="round" class="transition-all duration-300" />
+          </svg>
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+            <span id="org-timer-display" class="font-orbitron font-black text-5xl text-white leading-none">
+              60
+            </span>
+            <span id="org-timer-label" class="font-tech font-bold text-[10px] text-slate-400 uppercase tracking-widest mt-1">
+              SEGUNDOS
+            </span>
+          </div>
+        </div>
+
+        <!-- CONTROLES DO CRONÔMETRO -->
+        <div class="flex items-center space-x-2 w-full justify-center">
+          <button id="pause-timer-btn" onclick="togglePauseTimer()" class="bg-brand-cyan text-black hover:bg-brand-cyanHover font-tech font-extrabold text-xs px-3 py-2 rounded-xl uppercase tracking-wider transition flex items-center gap-1.5 cursor-pointer">
+            <i class="fa-solid fa-pause"></i> Pausar Tempo
+          </button>
+          <button onclick="resetRound()" class="bg-slate-900 border border-slate-700 text-slate-300 hover:text-white font-tech font-extrabold text-xs px-3 py-2 rounded-xl uppercase tracking-wider transition flex items-center gap-1.5 cursor-pointer">
+            <i class="fa-solid fa-rotate"></i> Reset Rodada
+          </button>
+        </div>
+
+        <!-- SEÇÃO DECISÃO DA RESPOSTA (NOVOS BOTÕES RESPOSTA CERTA E RESPOSTA ERRADA V8) -->
+        <div class="w-full pt-2 border-t border-white/5 space-y-2">
+          <span class="text-[10px] font-tech text-slate-400 uppercase font-bold tracking-widest block">DECISÃO DA RESPOSTA</span>
+          
+          <!-- BOTÕES PRINCIPAIS CERTA E ERRADA -->
+          <div class="grid grid-cols-2 gap-2 w-full">
+            <button id="btn-correct-ans" onclick="triggerCorrectAnswer()" class="bg-emerald-500 hover:bg-emerald-400 text-black font-black py-2.5 px-3 rounded-xl font-tech uppercase text-xs tracking-wider transition transform active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 shadow-glow-green">
+              <i class="fa-solid fa-circle-check text-base"></i> <span>RESPOSTA CERTA</span>
+            </button>
+
+            <button id="btn-wrong-ans" onclick="triggerWrongAnswer()" class="bg-rose-600 hover:bg-rose-500 text-white font-black py-2.5 px-3 rounded-xl font-tech uppercase text-xs tracking-wider transition transform active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 shadow-glow-red">
+              <i class="fa-solid fa-circle-xmark text-base"></i> <span>RESPOSTA ERRADA</span>
+            </button>
+          </div>
+
+          <!-- OPÇÕES SECUNDÁRIAS -->
+          <div class="flex gap-2 w-full pt-1">
+            <button onclick="skipQuestion()" class="w-full bg-slate-900 border border-slate-700 text-slate-300 hover:text-white font-extrabold py-1.5 px-2 rounded-xl font-tech uppercase text-[11px] tracking-wider transition transform active:scale-95 cursor-pointer flex items-center justify-center gap-1">
+              <i class="fa-solid fa-forward-step"></i> PULAR PERGUNTA (0 PTS)
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ================= JOGADOR 2 (COLUNA DIREITA) ================= -->
+      <div id="org-p2-card" class="bg-brand-card/90 border-2 border-brand-cardBorder rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 space-y-4">
+        <!-- HEADER JOGADOR 2 -->
+        <div class="flex items-center justify-between">
+          <div class="bg-brand-pink/10 border border-brand-pink/30 text-brand-pink text-[11px] font-tech font-extrabold px-3 py-1 rounded-full uppercase">
+            <i class="fa-solid fa-user mr-1"></i> JOGADOR 2 (ATALHO: L)
+          </div>
+          <span id="p2-status-pill" class="text-[10px] font-tech font-bold text-slate-400 bg-black/50 border border-white/5 px-2.5 py-0.5 rounded-full uppercase">
+            Aguardando
+          </span>
+        </div>
+
+        <!-- NOME INPUT JOGADOR 2 (ATUALIZAÇÃO EM TEMPO REAL SEM ATRASO V8) -->
+        <div class="bg-black/60 border border-white/10 rounded-xl p-2 text-center">
+          <input type="text" id="p2-name-input" value="Participante 2" oninput="updatePlayerNames()" onkeyup="updatePlayerNames()" class="w-full bg-transparent text-center font-orbitron font-bold text-xl text-white outline-none focus:text-brand-pink uppercase" />
+        </div>
+
+        <!-- CAIXA DE PONTUAÇÃO TOTAL JOGADOR 2 -->
+        <div class="bg-black/80 border border-white/10 rounded-xl py-4 text-center">
+          <span class="text-[10px] font-tech text-slate-400 uppercase tracking-widest block mb-1">PONTUAÇÃO TOTAL</span>
+          <div class="font-orbitron font-black text-6xl text-brand-pink drop-shadow-md">
+            <span id="p2-score-display">0</span>
+          </div>
+        </div>
+
+        <!-- BOTÃO BUZZER JOGADOR 2 -->
+        <div class="flex flex-col items-center justify-center">
+          <button id="p2-buzzer-btn" onclick="triggerBuzzer(2)" class="w-24 h-24 bg-brand-pink hover:bg-brand-pinkHover text-white rounded-full flex flex-col items-center justify-center shadow-glow-pink transition-all transform active:scale-95 cursor-pointer">
+            <i class="fa-solid fa-hand-pointer text-2xl mb-1"></i>
+            <span class="text-[9px] font-tech font-black uppercase tracking-wider">TECLA L</span>
+          </button>
+        </div>
+
+        <!-- AJUSTE MANUAL JOGADOR 2 -->
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-[10px] font-tech text-slate-400 uppercase font-bold">Ajuste Manual:</span>
+          <div class="flex space-x-1">
+            <button onclick="adjustScore(2, -10)" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-[11px] font-tech font-bold px-2 py-1 rounded border border-slate-700">-10</button>
+            <button onclick="adjustScore(2, -5)" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-[11px] font-tech font-bold px-2 py-1 rounded border border-slate-700">-5</button>
+            <button onclick="adjustScore(2, 5)" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-[11px] font-tech font-bold px-2 py-1 rounded border border-slate-700">+5</button>
+            <button onclick="adjustScore(2, 10)" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-[11px] font-tech font-bold px-2 py-1 rounded border border-slate-700">+10</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    <!-- TERMINAL DE LOG SERIAL ESP32 / EVENTOS -->
+    <div class="bg-brand-card/90 border border-brand-cardBorder rounded-xl p-3">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[10px] font-mono text-brand-cyan uppercase tracking-wider flex items-center gap-1.5">
+          <i class="fa-solid fa-terminal"></i> LOG SERIAL ESP32 / EVENTOS
+        </span>
+        <button onclick="clearSerialLog()" class="text-[10px] font-tech text-slate-400 hover:text-white uppercase">
+          Limpar Log
+        </button>
+      </div>
+      <div id="serial-log-box" class="bg-black/90 rounded-lg p-2 font-mono text-[11px] text-slate-300 h-16 overflow-y-auto border border-white/5 space-y-0.5">
+        <div>[Sistema] BIBLE CHALLENGE ESPECIAL: JOÃO 2026 (Versão 8) pronto.</div>
+      </div>
+    </div>
+
+
+    <!-- RODAPÉ LEGENDA DE ATALHOS -->
+    <footer class="flex items-center justify-between text-[11px] font-tech text-slate-400 uppercase tracking-widest pt-1">
+      <div>
+        Atalhos: <b class="text-brand-cyan">A</b> Buzzer P1 | <b class="text-brand-pink">L</b> Buzzer P2 | <b class="text-brand-gold">Espaço</b> Pausa Timer
+      </div>
+      <div class="text-right text-slate-500 font-bold">
+        BIBLE CHALLENGE ESPECIAL: JOÃO 2026 - VERSÃO 8
+      </div>
+    </footer>
+  </div>
+
+
+  <!-- =================================================================== -->
+  <!-- 3. POP-UPS E MODAIS (NOVOS POP-UPS DE CERTA / ERRADA V8)            -->
+  <!-- =================================================================== -->
+
+  <!-- POP-UP RESPOSTA CERTA (EXIBIDO NO ORGANIZADOR E NA PLATEIA V8) -->
+  <div id="correct-answer-popup" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex flex-col items-center justify-center p-4">
+    <div class="bg-brand-card border-4 border-emerald-500 rounded-3xl max-w-lg w-full p-8 text-center shadow-glow-green animate-pop-in relative">
+      <div class="w-20 h-20 rounded-full bg-emerald-500/20 border-2 border-emerald-400 flex items-center justify-center text-emerald-400 mx-auto mb-4 animate-bounce">
+        <i class="fa-solid fa-trophy text-4xl"></i>
+      </div>
+      <span class="font-tech font-black text-sm tracking-[0.25em] text-emerald-400 uppercase block mb-1">👏 EXCELENTE!</span>
+      <h2 class="font-orbitron font-black text-4xl md:text-5xl text-white uppercase tracking-wider mb-2 drop-shadow-md">
+        CERTA RESPOSTA!
+      </h2>
+      <p id="correct-popup-subtitle" class="font-tech text-base md:text-lg text-slate-200 mb-6 font-bold">
+        <span id="correct-player-name" class="text-brand-cyan font-black">PARTICIPANTE 1</span> ACERTOU E GANHOU <span id="correct-points-amount" class="text-brand-gold font-black">+10</span> PONTOS!
+      </p>
+
+      <button id="correct-popup-btn" onclick="closeAnswerPopupsAndReset()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-black py-3.5 px-6 rounded-2xl font-tech uppercase text-sm tracking-widest transition shadow-lg cursor-pointer transform active:scale-95">
+        CONTINUAR / PRÓXIMA RODADA <i class="fa-solid fa-arrow-right ml-2"></i>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- POP-UP RESPOSTA ERRADA (EXIBIDO NO ORGANIZADOR E NA PLATEIA V8) -->
+  <div id="wrong-answer-popup" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex flex-col items-center justify-center p-4">
+    <div class="bg-brand-card border-4 border-rose-600 rounded-3xl max-w-lg w-full p-8 text-center shadow-glow-red animate-pop-in relative">
+      <div class="w-20 h-20 rounded-full bg-rose-600/20 border-2 border-rose-500 flex items-center justify-center text-rose-500 mx-auto mb-4">
+        <i class="fa-solid fa-circle-xmark text-4xl"></i>
+      </div>
+      <span class="font-tech font-black text-sm tracking-[0.25em] text-rose-500 uppercase block mb-1">❌ QUE PENA!</span>
+      <h2 class="font-orbitron font-black text-4xl md:text-5xl text-white uppercase tracking-wider mb-2 drop-shadow-md">
+        RESPOSTA ERRADA!
+      </h2>
+      <p id="wrong-popup-subtitle" class="font-tech text-base md:text-lg text-slate-200 mb-6 font-bold">
+        <span id="wrong-player-name" class="text-brand-pink font-black">PARTICIPANTE</span> NÃO CONSEGUIU PONTUAR NESTA RODADA.
+      </p>
+
+      <button id="wrong-popup-btn" onclick="closeAnswerPopupsAndReset()" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-black py-3.5 px-6 rounded-2xl font-tech uppercase text-sm tracking-widest transition shadow-lg cursor-pointer transform active:scale-95">
+        FECHAR E CONTINUAR <i class="fa-solid fa-arrow-right ml-2"></i>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- MODAL CONFIGURAÇÕES -->
+  <div id="settings-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-brand-card border border-brand-cyan/40 rounded-3xl max-w-lg w-full p-6 shadow-glow-cyan relative">
+      <button onclick="closeSettingsModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+
+      <h3 class="font-orbitron font-extrabold text-xl text-brand-cyan mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-gear"></i> CONFIGURAÇÕES DO QUIZ
+      </h3>
+
+      <div class="space-y-4">
+        <!-- Multiplicador Base -->
+        <div class="flex flex-col space-y-1">
+          <label class="text-xs font-tech font-bold text-slate-300 uppercase">Multiplicador Base de Pontos:</label>
+          <input type="number" id="base-point-input" value="1" min="1" max="100" onchange="updateBasePointValue()" class="bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white font-mono text-sm focus:border-brand-cyan outline-none" />
+        </div>
+
+        <!-- Tempo da Rodada -->
+        <div class="flex flex-col space-y-1">
+          <label class="text-xs font-tech font-bold text-slate-300 uppercase">Tempo Padrão da Rodada (Segundos):</label>
+          <input type="number" id="round-time-input" value="60" min="5" max="300" onchange="updateRoundTimeSetting()" class="bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white font-mono text-sm focus:border-brand-cyan outline-none" />
+        </div>
+
+        <!-- Upload de Logo Customizado -->
+        <div class="flex flex-col space-y-1">
+          <label class="text-xs font-tech font-bold text-slate-300 uppercase">Upload ou URL da Logomarca:</label>
+          <input type="file" id="logo-file-input" accept="image/*" onchange="handleLogoUpload(event)" class="bg-slate-900 border border-slate-700 rounded-xl p-2 text-xs text-slate-300 file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-brand-cyan file:text-black file:font-bold" />
+        </div>
+
+        <!-- Botão Zerar Placar Geral -->
+        <div class="pt-4 border-t border-white/10">
+          <button onclick="requestResetScoreboard()" class="w-full bg-rose-600/20 hover:bg-rose-600/40 text-rose-300 border border-rose-500/40 font-extrabold py-3 px-4 rounded-xl font-tech uppercase text-xs tracking-wider transition flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-solid fa-trash-can"></i> Zerar Placar Geral dos Jogadores
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL CONFIRMAÇÃO RESET PLACAR -->
+  <div id="reset-confirm-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-brand-card border border-rose-500 rounded-3xl max-w-sm w-full p-6 text-center shadow-glow-pink">
+      <i class="fa-solid fa-triangle-exclamation text-rose-500 text-4xl mb-3"></i>
+      <h4 class="font-orbitron font-bold text-lg text-white mb-2">Zerar Placar Geral?</h4>
+      <p class="text-xs text-slate-300 mb-6">Esta ação redefinirá a pontuação de ambos os participantes para zero. Deseja continuar?</p>
+      <div class="flex gap-3">
+        <button onclick="confirmResetScoreboard()" class="flex-1 bg-rose-600 hover:bg-rose-500 text-white font-bold py-2.5 rounded-xl font-tech text-xs uppercase">Sim, Zerar</button>
+        <button onclick="closeResetConfirmModal()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-2.5 rounded-xl font-tech text-xs uppercase">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL CÓDIGO ESP32 ARDUINO -->
+  <div id="esp-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-brand-card border border-brand-cyan/40 rounded-3xl max-w-2xl w-full p-6 shadow-glow-cyan relative flex flex-col max-h-[85vh]">
+      <button onclick="closeEspModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+
+      <h3 class="font-orbitron font-extrabold text-xl text-brand-cyan mb-2 flex items-center gap-2">
+        <i class="fa-solid fa-microchip"></i> CÓDIGO ARDUINO / ESP32 (BOTÕES NF)
+      </h3>
+      <p class="text-xs text-slate-300 mb-3">Grave este código no ESP32 usando a IDE Arduino para botões Normalmente Fechados (NF) nos pinos GPIO 4 e 5.</p>
+
+      <div class="bg-black p-4 rounded-2xl border border-white/10 overflow-y-auto font-mono text-xs text-brand-cyan flex-grow">
+        <pre><code id="esp-code-snippet">
+// Código C++ Otimizado para ESP32 (Botões NF com Debounce)
+const int PIN_P1 = 4;
+const int PIN_P2 = 5;
+
+int lastStateP1 = LOW;
+int lastStateP2 = LOW;
+unsigned long lastDebounceTimeP1 = 0;
+unsigned long lastDebounceTimeP2 = 0;
+const unsigned long debounceDelay = 50;
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(PIN_P1, INPUT_PULLUP);
+  pinMode(PIN_P2, INPUT_PULLUP);
+}
+
+void loop() {
+  int readingP1 = digitalRead(PIN_P1);
+  int readingP2 = digitalRead(PIN_P2);
+
+  if (readingP1 != lastStateP1) {
+    lastDebounceTimeP1 = millis();
+  }
+  if ((millis() - lastDebounceTimeP1) > debounceDelay) {
+    if (readingP1 == HIGH && lastStateP1 == LOW) {
+      Serial.println("P1");
+      delay(300);
+    }
+  }
+  lastStateP1 = readingP1;
+
+  if (readingP2 != lastStateP2) {
+    lastDebounceTimeP2 = millis();
+  }
+  if ((millis() - lastDebounceTimeP2) > debounceDelay) {
+    if (readingP2 == HIGH && lastStateP2 == LOW) {
+      Serial.println("P2");
+      delay(300);
+    }
+  }
+  lastStateP2 = readingP2;
+}
+        </code></pre>
+      </div>
+
+      <div class="mt-4 flex justify-end gap-2">
+        <button onclick="copyEspCode()" class="bg-brand-cyan hover:bg-brand-cyanHover text-black font-extrabold py-2 px-5 rounded-xl transition text-xs flex items-center gap-2 cursor-pointer">
+          <i class="fa-regular fa-copy"></i> Copiar Código
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =================================================================== -->
+  <!-- 4. SCRIPT COMPLETO DA APLICAÇÃO (VERSÃO 8)                          -->
+  <!-- =================================================================== -->
+  <script>
+    /* -------------------------------------------------------------------
+       1. ESTADO GLOBAL E SINCRONIZAÇÃO DUAL-SCREEN
+       ------------------------------------------------------------------- */
+    const state = {
+      p1Name: "Participante 1",
+      p2Name: "Participante 2",
+      p1Score: 0,
+      p2Score: 0,
+      questionValue: 10,
+      basePointMultiplier: 1,
+      roundTime: 60,
+      timeRemaining: 60,
+      isTimerRunning: false,
+      isBuzzerLocked: false,
+      activeBuzzerPlayer: null, // 1 ou 2
+      customLogoUrl: "",
+      soundEnabled: true
+    };
+
+    const historyStack = [];
+
+    // BroadcastChannel para sincronização em tempo real entre Organizador e Plateia
+    const quizChannel = new BroadcastChannel("bible_challenge_quiz_channel_v8");
+
+    let timerInterval = null;
+    let serialPort = null;
+    let serialReader = null;
+    let audioCtx = null;
+
+    // Detecta se esta aba é a Tela da Plateia (?mode=audience)
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAudienceMode = urlParams.get('mode') === 'audience';
+
+    /* -------------------------------------------------------------------
+       2. INICIALIZAÇÃO E APLICADOR DE MODOS
+       ------------------------------------------------------------------- */
+    window.addEventListener('DOMContentLoaded', () => {
+      if (isAudienceMode) {
+        document.title = "BIBLE CHALLENGE - PLATEIA";
+        document.getElementById('organizer-view').classList.add('hidden');
+        document.getElementById('audience-view').classList.remove('hidden');
+        document.getElementById('audience-view').classList.add('flex');
+
+        // Oculta os botões de fechar / próxima rodada dos popups na tela da plateia
+        const correctBtn = document.getElementById('correct-popup-btn');
+        const wrongBtn = document.getElementById('wrong-popup-btn');
+        if (correctBtn) correctBtn.classList.add('hidden');
+        if (wrongBtn) wrongBtn.classList.add('hidden');
+
+        // Solicita sincronização imediata de estado ao organizador
+        quizChannel.postMessage({ type: 'REQUEST_STATE' });
+      } else {
+        document.getElementById('audience-view').classList.add('hidden');
+        document.getElementById('organizer-view').classList.remove('hidden');
+        document.getElementById('organizer-view').classList.add('flex');
+      }
+
+      updateAllDisplays();
+
+      // Escuta mensagens enviadas entre Organizador e Plateia
+      quizChannel.onmessage = (event) => {
+        const data = event.data;
+        if (data.type === 'REQUEST_STATE' && !isAudienceMode) {
+          broadcastState();
+        } else if (data.type === 'STATE_UPDATE') {
+          Object.assign(state, data.state);
+          updateAllDisplays();
+        } else if (data.type === 'BUZZER_POPUP') {
+          showBuzzerBannerUI(data.player, data.name);
+        } else if (data.type === 'CLOSE_POPUP') {
+          hideBuzzerBannerUI();
+        } else if (data.type === 'SHOW_CORRECT_POPUP') {
+          showCorrectPopupUI(data.name, data.points);
+        } else if (data.type === 'SHOW_WRONG_POPUP') {
+          showWrongPopupUI(data.name);
+        } else if (data.type === 'CLOSE_ANSWER_POPUPS') {
+          closeAnswerPopupsUI();
+        } else if (data.type === 'PLAY_SOUND') {
+          if (data.sound === 'buzzer') playBuzzerSound();
+          if (data.sound === 'win') playWinSound();
+          if (data.sound === 'wrong') playWrongSound();
+          if (data.sound === 'timeup') playTimeUpSound();
+          if (data.sound === 'beep') playWarningBeep();
+        }
+      };
+
+      // Atalhos de teclado no painel do organizador
+      window.addEventListener('keydown', (e) => {
+        if (isAudienceMode) return;
+        if (e.target.tagName === 'INPUT') return;
+
+        if (e.key === 'a' || e.key === 'A') {
+          triggerBuzzer(1);
+        } else if (e.key === 'l' || e.key === 'L') {
+          triggerBuzzer(2);
+        } else if (e.code === 'Space') {
+          e.preventDefault();
+          togglePauseTimer();
+        }
+      });
+    });
+
+    function broadcastState() {
+      if (!isAudienceMode) {
+        quizChannel.postMessage({ type: 'STATE_UPDATE', state });
+      }
+    }
+
+    function broadcastAction(type, payload = {}) {
+      if (!isAudienceMode) {
+        quizChannel.postMessage({ type, ...payload });
+      }
+    }
+
+    function logEvent(msg) {
+      const logBox = document.getElementById('serial-log-box');
+      if (logBox) {
+        const time = new Date().toLocaleTimeString();
+        const div = document.createElement('div');
+        div.innerText = `[${time}] ${msg}`;
+        logBox.appendChild(div);
+        logBox.scrollTop = logBox.scrollHeight;
+      }
+    }
+
+    function clearSerialLog() {
+      const logBox = document.getElementById('serial-log-box');
+      if (logBox) logBox.innerHTML = '<div>[Sistema] Log limpo.</div>';
+    }
+
+
+    /* -------------------------------------------------------------------
+       3. SÍNTESE DE ÁUDIO (WEB AUDIO API)
+       ------------------------------------------------------------------- */
+    function initAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function toggleSound() {
+      state.soundEnabled = !state.soundEnabled;
+      const icon = document.getElementById('sound-icon');
+      if (icon) {
+        icon.className = state.soundEnabled ? "fa-solid fa-volume-high" : "fa-solid fa-volume-xmark text-rose-500";
+      }
+      logEvent(state.soundEnabled ? "Sons ativados." : "Sons desativados.");
+    }
+
+    // Efeito Sonoro de Acionamento do Botão (Buzzer)
+    function playBuzzerSound() {
+      if (!state.soundEnabled) return;
+      initAudioContext();
+      try {
+        const now = audioCtx.currentTime;
+        const osc1 = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc1.type = 'sawtooth';
+        osc2.type = 'square';
+
+        osc1.frequency.setValueAtTime(440, now);
+        osc1.frequency.exponentialRampToValueAtTime(880, now + 0.18);
+        osc2.frequency.setValueAtTime(554.37, now);
+        osc2.frequency.exponentialRampToValueAtTime(1108.73, now + 0.18);
+
+        gain.gain.setValueAtTime(0.6, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + 0.22);
+        osc2.stop(now + 0.22);
+      } catch (e) { console.error(e); }
+    }
+
+    // Efeito Sonoro de Resposta Certa
+    function playWinSound() {
+      if (!state.soundEnabled) return;
+      initAudioContext();
+      try {
+        const now = audioCtx.currentTime;
+        const notes = [523.25, 659.25, 783.99, 1046.50];
+        notes.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+
+          gain.gain.setValueAtTime(0.4, now + idx * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.25);
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.start(now + idx * 0.08);
+          osc.stop(now + idx * 0.08 + 0.25);
+        });
+      } catch (e) { console.error(e); }
+    }
+
+    // Efeito Sonoro de Resposta Errada
+    function playWrongSound() {
+      if (!state.soundEnabled) return;
+      initAudioContext();
+      try {
+        const now = audioCtx.currentTime;
+        const osc1 = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc1.type = 'sawtooth';
+        osc2.type = 'sawtooth';
+
+        osc1.frequency.setValueAtTime(150, now);
+        osc2.frequency.setValueAtTime(156, now);
+
+        gain.gain.setValueAtTime(0.5, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + 0.45);
+        osc2.stop(now + 0.45);
+      } catch (e) { console.error(e); }
+    }
+
+    // Bip dos 10 Segundos Finais
+    function playWarningBeep() {
+      if (!state.soundEnabled) return;
+      initAudioContext();
+      try {
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, now);
+
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.08);
+      } catch (e) { console.error(e); }
+    }
+
+    // Som de Encerramento do Tempo ("Bééééé!" - Bode Cômico)
+    function playTimeUpSound() {
+      if (!state.soundEnabled) return;
+      initAudioContext();
+      try {
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const lfo = audioCtx.createOscillator();
+        const lfoGain = audioCtx.createGain();
+        const filter = audioCtx.createBiquadFilter();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(320, now);
+
+        lfo.frequency.setValueAtTime(14, now); // Bode bleat
+        lfoGain.gain.setValueAtTime(25, now);
+        lfo.connect(osc.frequency);
+
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(950, now);
+        filter.Q.setValueAtTime(3.5, now);
+
+        gain.gain.setValueAtTime(0.01, now);
+        gain.gain.linearRampToValueAtTime(0.6, now + 0.05);
+        gain.gain.setValueAtTime(0.6, now + 0.6);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.95);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        lfo.start(now);
+        osc.start(now);
+        lfo.stop(now + 0.95);
+        osc.stop(now + 0.95);
+      } catch (e) { console.error(e); }
+    }
+
+
+    /* -------------------------------------------------------------------
+       4. LÓGICA DE JOGO, PONTUAÇÃO E HISTÓRICO
+       ------------------------------------------------------------------- */
+    function saveHistory() {
+      historyStack.push(JSON.stringify(state));
+      if (historyStack.length > 20) historyStack.shift();
+    }
+
+    function undoLastAction() {
+      if (historyStack.length === 0) {
+        logEvent("Nenhuma ação no histórico para desfazer.");
+        return;
+      }
+      const previousState = JSON.parse(historyStack.pop());
+      Object.assign(state, previousState);
+      logEvent("Última ação desfeita.");
+      closeAnswerPopupsUI();
+      updateAllDisplays();
+      broadcastState();
+    }
+
+    // Atualização imediata dos nomes ao digitar (Fix V8)
+    function updatePlayerNames() {
+      const p1Input = document.getElementById('p1-name-input');
+      const p2Input = document.getElementById('p2-name-input');
+      if (p1Input && p2Input) {
+        state.p1Name = p1Input.value || "Participante 1";
+        state.p2Name = p2Input.value || "Participante 2";
+        updateAllDisplays();
+        broadcastState(); // Envio instantâneo via BroadcastChannel
+      }
+    }
+
+    function updateQuestionValue() {
+      const qInput = document.getElementById('question-val-input');
+      if (qInput) {
+        state.questionValue = parseInt(qInput.value, 10) || 10;
+        updateAllDisplays();
+        broadcastState();
+      }
+    }
+
+    // Adiciona +5, +10 ou +25 ao valor atual da pergunta (Fix V8)
+    function addQuestionValue(amount) {
+      saveHistory();
+      const current = parseInt(state.questionValue, 10) || 0;
+      state.questionValue = Math.max(1, current + amount);
+      
+      const qInput = document.getElementById('question-val-input');
+      if (qInput) qInput.value = state.questionValue;
+      
+      logEvent(`Pontos da pergunta ajustados em +${amount} (Total: ${state.questionValue})`);
+      updateAllDisplays();
+      broadcastState();
+    }
+
+    function adjustScore(player, amount) {
+      saveHistory();
+      if (player === 1) {
+        state.p1Score += amount;
+        logEvent(`Ajuste manual P1: ${amount > 0 ? '+' : ''}${amount} pts (Total: ${state.p1Score})`);
+      } else {
+        state.p2Score += amount;
+        logEvent(`Ajuste manual P2: ${amount > 0 ? '+' : ''}${amount} pts (Total: ${state.p2Score})`);
+      }
+      updateAllDisplays();
+      broadcastState();
+    }
+
+    function updateBasePointValue() {
+      const bInput = document.getElementById('base-point-input');
+      if (bInput) {
+        state.basePointMultiplier = parseInt(bInput.value, 10) || 1;
+        updateAllDisplays();
+        broadcastState();
+      }
+    }
+
+    function updateRoundTimeSetting() {
+      const rInput = document.getElementById('round-time-input');
+      if (rInput) {
+        state.roundTime = parseInt(rInput.value, 10) || 60;
+        if (!state.isTimerRunning) {
+          state.timeRemaining = state.roundTime;
+        }
+        updateAllDisplays();
+        broadcastState();
+      }
+    }
+
+    // Acionamento do Buzzer (ESP32, Clique ou Teclado)
+    function triggerBuzzer(player) {
+      if (state.isBuzzerLocked) return;
+
+      saveHistory();
+      state.isBuzzerLocked = true;
+      state.activeBuzzerPlayer = player;
+      const playerName = player === 1 ? state.p1Name : state.p2Name;
+
+      logEvent(`🔔 BOTÃO APERTADO: ${playerName.toUpperCase()} (P${player})`);
+
+      playBuzzerSound();
+      broadcastAction('PLAY_SOUND', { sound: 'buzzer' });
+
+      showBuzzerBannerUI(player, playerName);
+      broadcastAction('BUZZER_POPUP', { player, name: playerName });
+
+      startTimer();
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      state.isTimerRunning = true;
+
+      timerInterval = setInterval(() => {
+        if (state.timeRemaining > 0) {
+          state.timeRemaining--;
+
+          if (state.timeRemaining <= 10 && state.timeRemaining > 0) {
+            playWarningBeep();
+            broadcastAction('PLAY_SOUND', { sound: 'beep' });
+          }
+
+          if (state.timeRemaining === 0) {
+            clearInterval(timerInterval);
+            state.isTimerRunning = false;
+            logEvent("⏰ TEMPO ESGOTADO!");
+            playTimeUpSound();
+            broadcastAction('PLAY_SOUND', { sound: 'timeup' });
+          }
+
+          updateAllDisplays();
+          broadcastState();
+        }
+      }, 1000);
+
+      updateAllDisplays();
+      broadcastState();
+    }
+
+    function togglePauseTimer() {
+      if (state.isTimerRunning) {
+        clearInterval(timerInterval);
+        state.isTimerRunning = false;
+        logEvent("Timer pausado.");
+      } else {
+        if (state.timeRemaining > 0) {
+          startTimer();
+          logEvent("Timer retomado.");
+        }
+      }
+      updateAllDisplays();
+      broadcastState();
+    }
+
+
+    /* -------------------------------------------------------------------
+       5. NOVAS FUNÇÕES E POP-UPS DE RESPOSTA CERTA / ERRADA (V8)
+       ------------------------------------------------------------------- */
+    function triggerCorrectAnswer() {
+      saveHistory();
+      const player = state.activeBuzzerPlayer || 1;
+      const playerName = player === 1 ? state.p1Name : state.p2Name;
+      const pointsToAdd = state.questionValue * state.basePointMultiplier;
+
+      if (player === 1) {
+        state.p1Score += pointsToAdd;
+      } else {
+        state.p2Score += pointsToAdd;
+      }
+
+      // Pausa o cronômetro
+      clearInterval(timerInterval);
+      state.isTimerRunning = false;
+
+      logEvent(`🟢 RESPOSTA CERTA! ${playerName} ganhou +${pointsToAdd} pts!`);
+
+      playWinSound();
+      broadcastAction('PLAY_SOUND', { sound: 'win' });
+
+      showCorrectPopupUI(playerName, pointsToAdd);
+      broadcastAction('SHOW_CORRECT_POPUP', { name: playerName, points: pointsToAdd });
+
+      updateAllDisplays();
+      broadcastState();
+    }
+
+    function triggerWrongAnswer() {
+      saveHistory();
+      const player = state.activeBuzzerPlayer || 1;
+      const playerName = player === 1 ? state.p1Name : state.p2Name;
+
+      // Pausa o cronômetro
+      clearInterval(timerInterval);
+      state.isTimerRunning = false;
+
+      logEvent(`🔴 RESPOSTA ERRADA! ${playerName} errou a resposta.`);
+
+      playWrongSound();
+      broadcastAction('PLAY_SOUND', { sound: 'wrong' });
+
+      showWrongPopupUI(playerName);
+      broadcastAction('SHOW_WRONG_POPUP', { name: playerName });
+
+      updateAllDisplays();
+      broadcastState();
+    }
+
+    function showCorrectPopupUI(name, points) {
+      const modal = document.getElementById('correct-answer-popup');
+      const nameEl = document.getElementById('correct-player-name');
+      const ptsEl = document.getElementById('correct-points-amount');
+
+      if (modal && nameEl && ptsEl) {
+        nameEl.innerText = name;
+        ptsEl.innerText = `+${points}`;
+        modal.classList.remove('hidden');
+      }
+    }
+
+    function showWrongPopupUI(name) {
+      const modal = document.getElementById('wrong-answer-popup');
+      const nameEl = document.getElementById('wrong-player-name');
+
+      if (modal && nameEl) {
+        nameEl.innerText = name;
+        modal.classList.remove('hidden');
+      }
+    }
+
+    function closeAnswerPopupsUI() {
+      const correctModal = document.getElementById('correct-answer-popup');
+      const wrongModal = document.getElementById('wrong-answer-popup');
+      if (correctModal) correctModal.classList.add('hidden');
+      if (wrongModal) wrongModal.classList.add('hidden');
+    }
+
+    function closeAnswerPopupsAndReset() {
+      closeAnswerPopupsUI();
+      broadcastAction('CLOSE_ANSWER_POPUPS');
+      resetRound();
+    }
+
+    function skipQuestion() {
+      saveHistory();
+      logEvent("Pergunta pulada (sem pontos).");
+      resetRound();
+    }
+
+    function resetRound() {
+      clearInterval(timerInterval);
+      state.isTimerRunning = false;
+      state.isBuzzerLocked = false;
+      state.activeBuzzerPlayer = null;
+      state.timeRemaining = state.roundTime;
+
+      hideBuzzerBannerUI();
+      closeAnswerPopupsUI();
+      broadcastAction('CLOSE_POPUP');
+      broadcastAction('CLOSE_ANSWER_POPUPS');
+
+      updateAllDisplays();
+      broadcastState();
+    }
+
+    function requestResetScoreboard() {
+      document.getElementById('reset-confirm-modal').classList.remove('hidden');
+    }
+
+    function closeResetConfirmModal() {
+      document.getElementById('reset-confirm-modal').classList.add('hidden');
+    }
+
+    function confirmResetScoreboard() {
+      saveHistory();
+      state.p1Score = 0;
+      state.p2Score = 0;
+      closeResetConfirmModal();
+      closeSettingsModal();
+      logEvent("Placar geral zerado.");
+      resetRound();
+    }
+
+
+    /* -------------------------------------------------------------------
+       6. ATUALIZAÇÃO DA INTERFACE DO USUÁRIO
+       ------------------------------------------------------------------- */
+    function updateAllDisplays() {
+      // 1. Placar e Nomes (Organizador)
+      const p1ScoreDisp = document.getElementById('p1-score-display');
+      const p2ScoreDisp = document.getElementById('p2-score-display');
+      if (p1ScoreDisp) p1ScoreDisp.innerText = state.p1Score;
+      if (p2ScoreDisp) p2ScoreDisp.innerText = state.p2Score;
+
+      // 2. Placar e Nomes (Plateia - Sincronizado instantaneamente V8)
+      const audP1Name = document.getElementById('audience-p1-name');
+      const audP2Name = document.getElementById('audience-p2-name');
+      const audP1Score = document.getElementById('audience-p1-score');
+      const audP2Score = document.getElementById('audience-p2-score');
+      if (audP1Name) audP1Name.innerText = state.p1Name;
+      if (audP2Name) audP2Name.innerText = state.p2Name;
+      if (audP1Score) audP1Score.innerText = state.p1Score;
+      if (audP2Score) audP2Score.innerText = state.p2Score;
+
+      // 3. Pontos e Multiplicador Display
+      const effectivePoints = state.questionValue * state.basePointMultiplier;
+      const effDisp = document.getElementById('effective-points-display');
+      const baseDisp = document.getElementById('base-multiplier-display');
+      const audQVal = document.getElementById('audience-question-val-display');
+
+      if (effDisp) effDisp.innerText = effectivePoints;
+      if (baseDisp) baseDisp.innerText = state.basePointMultiplier;
+      if (audQVal) audQVal.innerText = effectivePoints;
+
+      // 4. Cronômetro (Organizador & Plateia)
+      const orgTimerDisplay = document.getElementById('org-timer-display');
+      const audTimerDisplay = document.getElementById('audience-timer-display');
+      if (orgTimerDisplay) orgTimerDisplay.innerText = state.timeRemaining;
+      if (audTimerDisplay) audTimerDisplay.innerText = state.timeRemaining;
+
+      // Cores nos 10s Finais
+      const isCriticalTime = state.timeRemaining <= 10 && state.timeRemaining > 0;
+      [orgTimerDisplay, audTimerDisplay].forEach(el => {
+        if (el) {
+          if (isCriticalTime) {
+            el.classList.remove('text-white');
+            el.classList.add('text-red-500', 'animate-pulse');
+          } else {
+            el.classList.remove('text-red-500', 'animate-pulse');
+            el.classList.add('text-white');
+          }
+        }
+      });
+
+      // Anéis SVG
+      const progressOffset = 691.1 * (1 - state.timeRemaining / state.roundTime);
+      const orgRing = document.getElementById('org-timer-ring');
+      const audRing = document.getElementById('audience-timer-ring');
+      [orgRing, audRing].forEach(ring => {
+        if (ring) {
+          ring.style.strokeDashoffset = progressOffset;
+          ring.setAttribute('stroke', isCriticalTime ? '#e11d48' : '#00C2CB');
+        }
+      });
+
+      // 5. Botão Pausar / Retomar Texto
+      const pauseBtn = document.getElementById('pause-timer-btn');
+      if (pauseBtn) {
+        pauseBtn.innerHTML = state.isTimerRunning ? 
+          '<i class="fa-solid fa-pause"></i> Pausar Tempo' : 
+          '<i class="fa-solid fa-play"></i> Retomar Tempo';
+      }
+
+      // 6. Status Pill no Painel Central e Jogadores
+      updateStatusPills();
+    }
+
+    function updateStatusPills() {
+      const p1Status = document.getElementById('p1-status-pill');
+      const p2Status = document.getElementById('p2-status-pill');
+      const timerBadge = document.getElementById('timer-status-badge');
+
+      if (!state.activeBuzzerPlayer) {
+        if (p1Status) {
+          p1Status.innerText = "Aguardando";
+          p1Status.className = "text-[10px] font-tech font-bold text-slate-400 bg-black/50 border border-white/5 px-2.5 py-0.5 rounded-full uppercase";
+        }
+        if (p2Status) {
+          p2Status.innerText = "Aguardando";
+          p2Status.className = "text-[10px] font-tech font-bold text-slate-400 bg-black/50 border border-white/5 px-2.5 py-0.5 rounded-full uppercase";
+        }
+        if (timerBadge) {
+          timerBadge.innerText = "🟢 PRONTO PARA RESPONDER";
+          timerBadge.className = "bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan text-[11px] font-tech font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-block";
+        }
+      } else if (state.activeBuzzerPlayer === 1) {
+        if (p1Status) {
+          p1Status.innerText = "RESPONDENDO!";
+          p1Status.className = "text-[10px] font-tech font-extrabold text-black bg-brand-cyan px-2.5 py-0.5 rounded-full uppercase shadow-glow-cyan animate-pulse";
+        }
+        if (p2Status) {
+          p2Status.innerText = "BLOQUEADO";
+          p2Status.className = "text-[10px] font-tech font-bold text-slate-500 bg-rose-950/40 border border-rose-500/20 px-2.5 py-0.5 rounded-full uppercase";
+        }
+        if (timerBadge) {
+          timerBadge.innerText = `⚡ ${state.p1Name.toUpperCase()} RESPONDE PRIMEIRO!`;
+          timerBadge.className = "bg-brand-cyan text-black font-extrabold text-[11px] font-tech px-3 py-1 rounded-full uppercase tracking-wider inline-block shadow-glow-cyan";
+        }
+      } else if (state.activeBuzzerPlayer === 2) {
+        if (p1Status) {
+          p1Status.innerText = "BLOQUEADO";
+          p1Status.className = "text-[10px] font-tech font-bold text-slate-500 bg-rose-950/40 border border-rose-500/20 px-2.5 py-0.5 rounded-full uppercase";
+        }
+        if (p2Status) {
+          p2Status.innerText = "RESPONDENDO!";
+          p2Status.className = "text-[10px] font-tech font-extrabold text-white bg-brand-pink px-2.5 py-0.5 rounded-full uppercase shadow-glow-pink animate-pulse";
+        }
+        if (timerBadge) {
+          timerBadge.innerText = `⚡ ${state.p2Name.toUpperCase()} RESPONDE PRIMEIRO!`;
+          timerBadge.className = "bg-brand-pink text-white font-extrabold text-[11px] font-tech px-3 py-1 rounded-full uppercase tracking-wider inline-block shadow-glow-pink";
+        }
+      }
+    }
+
+    function showBuzzerBannerUI(player, playerName) {
+      // Banner Organizador
+      const orgBanner = document.getElementById('org-buzzer-banner');
+      const orgCard = document.getElementById('org-buzzer-card');
+      const orgName = document.getElementById('org-buzzer-name');
+
+      if (orgBanner && orgCard && orgName) {
+        orgName.innerText = playerName;
+        if (player === 1) {
+          orgCard.style.borderColor = '#00C2CB';
+          orgCard.style.boxShadow = '0 0 35px rgba(0, 194, 203, 0.5)';
+          orgName.className = "font-orbitron font-black text-3xl md:text-5xl uppercase tracking-wider my-1 text-brand-cyan drop-shadow-md";
+        } else {
+          orgCard.style.borderColor = '#e11d48';
+          orgCard.style.boxShadow = '0 0 35px rgba(225, 29, 72, 0.5)';
+          orgName.className = "font-orbitron font-black text-3xl md:text-5xl uppercase tracking-wider my-1 text-brand-pink drop-shadow-md";
+        }
+        orgBanner.classList.remove('hidden');
+      }
+
+      // Card Highlight no Organizador
+      const orgP1Card = document.getElementById('org-p1-card');
+      const orgP2Card = document.getElementById('org-p2-card');
+
+      if (player === 1) {
+        if (orgP1Card) orgP1Card.className = "bg-brand-card/90 border-2 border-brand-cyan rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 space-y-4 card-active-p1";
+        if (orgP2Card) orgP2Card.className = "bg-brand-card/90 border-2 border-brand-cardBorder rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 space-y-4 card-dimmed";
+      } else {
+        if (orgP1Card) orgP1Card.className = "bg-brand-card/90 border-2 border-brand-cardBorder rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 space-y-4 card-dimmed";
+        if (orgP2Card) orgP2Card.className = "bg-brand-card/90 border-2 border-brand-pink rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 space-y-4 card-active-p2";
+      }
+
+      // Banner & Highlight Plateia
+      const audBanner = document.getElementById('audience-buzzer-banner');
+      const audCard = document.getElementById('audience-buzzer-card');
+      const audName = document.getElementById('audience-buzzer-name');
+      const audP1Card = document.getElementById('audience-p1-card');
+      const audP2Card = document.getElementById('audience-p2-card');
+
+      if (audBanner && audCard && audName) {
+        audName.innerText = playerName;
+        if (player === 1) {
+          audCard.style.borderColor = '#00C2CB';
+          audCard.style.boxShadow = '0 0 40px rgba(0, 194, 203, 0.5)';
+          audName.className = "font-orbitron font-black text-4xl md:text-5xl uppercase tracking-wider my-1 text-brand-cyan";
+          if (audP1Card) audP1Card.className = "bg-brand-card/95 border-2 border-brand-cyan rounded-3xl p-8 flex flex-col items-center justify-between min-h-[340px] md:min-h-[380px] transition-all duration-300 card-active-p1 shadow-2xl";
+          if (audP2Card) audP2Card.className = "bg-brand-card/95 border-2 border-brand-cardBorder rounded-3xl p-8 flex flex-col items-center justify-between min-h-[340px] md:min-h-[380px] transition-all duration-300 card-dimmed shadow-2xl";
+        } else {
+          audCard.style.borderColor = '#e11d48';
+          audCard.style.boxShadow = '0 0 40px rgba(225, 29, 72, 0.5)';
+          audName.className = "font-orbitron font-black text-4xl md:text-5xl uppercase tracking-wider my-1 text-brand-pink";
+          if (audP1Card) audP1Card.className = "bg-brand-card/95 border-2 border-brand-cardBorder rounded-3xl p-8 flex flex-col items-center justify-between min-h-[340px] md:min-h-[380px] transition-all duration-300 card-dimmed shadow-2xl";
+          if (audP2Card) audP2Card.className = "bg-brand-card/95 border-2 border-brand-pink rounded-3xl p-8 flex flex-col items-center justify-between min-h-[340px] md:min-h-[380px] transition-all duration-300 card-active-p2 shadow-2xl";
+        }
+        audBanner.classList.remove('hidden');
+      }
+    }
+
+    function hideBuzzerBannerUI() {
+      const orgBanner = document.getElementById('org-buzzer-banner');
+      const audBanner = document.getElementById('audience-buzzer-banner');
+      if (orgBanner) orgBanner.classList.add('hidden');
+      if (audBanner) audBanner.classList.add('hidden');
+
+      const orgP1Card = document.getElementById('org-p1-card');
+      const orgP2Card = document.getElementById('org-p2-card');
+      const audP1Card = document.getElementById('audience-p1-card');
+      const audP2Card = document.getElementById('audience-p2-card');
+
+      const normalClass = "bg-brand-card/90 border-2 border-brand-cardBorder rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 space-y-4";
+      const audNormalClass = "bg-brand-card/95 border-2 border-brand-cardBorder rounded-3xl p-8 flex flex-col items-center justify-between min-h-[340px] md:min-h-[380px] transition-all duration-300 shadow-2xl";
+
+      if (orgP1Card) orgP1Card.className = normalClass;
+      if (orgP2Card) orgP2Card.className = normalClass;
+      if (audP1Card) audP1Card.className = audNormalClass;
+      if (audP2Card) audP2Card.className = audNormalClass;
+    }
+
+
+    /* -------------------------------------------------------------------
+       7. TELA DA PLATEIA & FULLSCREEN
+       ------------------------------------------------------------------- */
+    function openAudienceWindow() {
+      const url = window.location.href.split('?')[0] + '?mode=audience';
+      window.open(url, 'QuizAudienceWindow', 'popup=yes,width=1280,height=720,toolbar=no,location=no,status=no,menubar=no');
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.error(err));
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    function toggleFullScreenIfAudience(event) {
+      if (isAudienceMode) {
+        toggleFullScreen();
+      }
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+      const btn = document.getElementById('audience-fullscreen-btn');
+      if (btn) {
+        if (document.fullscreenElement) {
+          btn.classList.add('hidden');
+        } else {
+          btn.classList.remove('hidden');
+        }
+      }
+    });
+
+
+    /* -------------------------------------------------------------------
+       8. UPLOAD DE LOGO & MODAIS
+       ------------------------------------------------------------------- */
+    function handleLogoUpload(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          state.customLogoUrl = event.target.result;
+          updateLogoUI();
+          broadcastState();
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function updateLogoUI() {
+      const audTextLogo = document.getElementById('audience-logo-text-container');
+      const audCustomLogo = document.getElementById('audience-logo-custom-container');
+      const audImg = document.getElementById('audience-logo-img');
+
+      if (state.customLogoUrl) {
+        if (audImg) audImg.src = state.customLogoUrl;
+        if (audTextLogo) audTextLogo.classList.add('hidden');
+        if (audCustomLogo) audCustomLogo.classList.remove('hidden');
+      } else {
+        if (audTextLogo) audTextLogo.classList.remove('hidden');
+        if (audCustomLogo) audCustomLogo.classList.add('hidden');
+      }
+    }
+
+    function openSettingsModal() {
+      document.getElementById('settings-modal').classList.remove('hidden');
+    }
+
+    function closeSettingsModal() {
+      document.getElementById('settings-modal').classList.add('hidden');
+    }
+
+    function openEspModal() {
+      document.getElementById('esp-modal').classList.remove('hidden');
+    }
+
+    function closeEspModal() {
+      document.getElementById('esp-modal').classList.add('hidden');
+    }
+
+    function copyEspCode() {
+      const code = document.getElementById('esp-code-snippet').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        logEvent("Código ESP32 copiado para a área de transferência.");
+      });
+    }
+
+
+    /* -------------------------------------------------------------------
+       9. CONECTIVIDADE WEB SERIAL API (ESP32)
+       ------------------------------------------------------------------- */
+    async function toggleSerialConnection() {
+      if (!("serial" in navigator)) {
+        logEvent("ERRO: Navegador não suporta Web Serial API. Use Chrome/Edge via HTTPS.");
+        return;
+      }
+
+      if (serialPort) {
+        try {
+          if (serialReader) await serialReader.cancel();
+          await serialPort.close();
+          serialPort = null;
+          document.getElementById('serial-btn-text').innerText = "ESP32 Off • Conectar";
+          document.getElementById('serial-status-dot').className = "w-2 h-2 rounded-full bg-rose-500";
+          logEvent("ESP32 desconectado.");
+        } catch (e) { console.error(e); }
+        return;
+      }
+
+      try {
+        serialPort = await navigator.serial.requestPort();
+        await serialPort.open({ baudRate: 115200 });
+
+        document.getElementById('serial-btn-text').innerText = "ESP32 Conectado";
+        document.getElementById('serial-status-dot').className = "w-2 h-2 rounded-full bg-emerald-500 animate-pulse";
+        logEvent("ESP32 conectado com sucesso (Baud: 115200).");
+
+        readSerialData();
+      } catch (err) {
+        logEvent(`Erro ao conectar ESP32: ${err.message || err}`);
+      }
+    }
+
+    async function readSerialData() {
+      const textDecoder = new TextDecoderStream();
+      const readableStreamClosed = serialPort.readable.pipeTo(textDecoder.writable);
+      serialReader = textDecoder.readable.getReader();
+
+      let buffer = "";
+
+      try {
+        while (true) {
+          const { value, done } = await serialReader.read();
+          if (done) break;
+
+          buffer += value;
+          const lines = buffer.split("\n");
+          buffer = lines.pop();
+
+          for (const line of lines) {
+            const cleanLine = line.trim();
+            if (cleanLine === "P1") {
+              logEvent("Sinal Serial recebido: P1");
+              triggerBuzzer(1);
+            } else if (cleanLine === "P2") {
+              logEvent("Sinal Serial recebido: P2");
+              triggerBuzzer(2);
+            }
+          }
+        }
+      } catch (error) {
+        logEvent(`Erro leitura Serial: ${error.message || error}`);
+      } finally {
+        serialReader.releaseLock();
+      }
+    }
+  </script>
+</body>
+</html>
