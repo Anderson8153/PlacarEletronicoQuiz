@@ -1,6 +1,8 @@
 🏆 Placar Eletrônico Quiz ESP32 (v8)
 Sistema interativo de Placar Eletrônico e Gamificação para Quizzes e Dinâmicas em Equipe, integrado com microcontroladores ESP32 / Arduino via WebSockets e Interface Web responsiva.
 
+https://anderson8153.github.io/PlacarEletronicoQuiz/
+
 
 📌 Visão Geral
 Este projeto é uma solução completa para controle de pontuação, gerenciamento de rodadas, temporizador e acionamento físico por botões (buzzers). É ideal para eventos, gincanas, escolas, igrejas ou encontros corporativos.
