@@ -177,25 +177,25 @@
         </span>
       </div>
 
-      <!-- BANNER TOPO ACIONAMENTO RESPOSTA (PLATEIA) -->
-      <div id="audience-buzzer-banner" class="mt-[3vh] w-full max-w-5xl mx-auto flex items-center justify-center hidden">
-        <div id="audience-buzzer-card" class="bg-brand-card border-4 rounded-3xl px-[6vw] py-[2.5vh] text-center shadow-2xl transition-all duration-300">
-          <span class="text-[2vh] font-tech font-extrabold tracking-[0.2em] text-slate-300 uppercase block mb-[1vh]">
+      <!-- BANNER TOPO ACIONAMENTO RESPOSTA (PLATEIA - AMPLIADO E COBRINDO O VALOR DA PERGUNTA) -->
+      <div id="audience-buzzer-banner" class="mt-[3vh] w-full max-w-6xl mx-auto flex items-center justify-center hidden">
+        <div id="audience-buzzer-card" class="bg-brand-card/98 border-4 rounded-3xl px-[6vw] py-[3vh] text-center shadow-2xl transition-all duration-300 w-full">
+          <span class="text-[2.2vh] font-tech font-extrabold tracking-[0.2em] text-slate-300 uppercase block mb-[1vh]">
             ⚡ APERTOU O BOTÃO PRIMEIRO!
           </span>
-          <h2 id="audience-buzzer-name" class="font-orbitron font-black text-[8vh] uppercase tracking-wider leading-none">
+          <h2 id="audience-buzzer-name" class="font-orbitron font-black text-[9vh] uppercase tracking-wider leading-none">
             PARTICIPANTE 1
           </h2>
         </div>
       </div>
     </div>
 
-    <!-- PAINEL CENTRAL PLATEIA (PROPORCIONAL À TELA V9) -->
+    <!-- PAINEL CENTRAL PLATEIA (SEM RÓTULOS JOGADOR 1 / JOGADOR 2) -->
     <div class="w-full max-w-[90vw] mx-auto grid grid-cols-3 gap-[4vw] items-center h-[50vh] mt-[2vh]">
       
       <!-- CARD JOGADOR 1 -->
       <div id="audience-p1-card" class="bg-brand-card/95 border-2 border-brand-cardBorder rounded-3xl p-[3vh] flex flex-col items-center justify-center gap-[4vh] h-full transition-all duration-300 shadow-2xl">
-        <h3 id="audience-p1-name" class="font-orbitron font-black text-[5vh] text-white uppercase text-center tracking-wide leading-tight drop-shadow-lg break-words w-full px-[1vw]">
+        <h3 id="audience-p1-name" class="font-orbitron font-black text-[6vh] text-white uppercase text-center tracking-wide leading-tight drop-shadow-lg break-words w-full px-[1vw]">
           Participante 1
         </h3>
         <div class="w-full bg-black/70 border border-white/10 rounded-2xl py-[2vh] text-center shadow-inner mb-[1vh]">
@@ -204,7 +204,7 @@
         </div>
       </div>
 
-      <!-- CRONÔMETRO CENTRAL (SCALADO POR VMIN PARA SER SEMPRE UM CÍRCULO PERFEITO) -->
+      <!-- CRONÔMETRO CENTRAL -->
       <div class="flex flex-col items-center justify-center h-full">
         <div class="relative w-[38vmin] h-[38vmin] flex items-center justify-center">
           <svg class="w-full h-full transform -rotate-90" viewBox="0 0 256 256">
@@ -224,7 +224,7 @@
 
       <!-- CARD JOGADOR 2 -->
       <div id="audience-p2-card" class="bg-brand-card/95 border-2 border-brand-cardBorder rounded-3xl p-[3vh] flex flex-col items-center justify-center gap-[4vh] h-full transition-all duration-300 shadow-2xl">
-        <h3 id="audience-p2-name" class="font-orbitron font-black text-[5vh] text-white uppercase text-center tracking-wide leading-tight drop-shadow-lg break-words w-full px-[1vw]">
+        <h3 id="audience-p2-name" class="font-orbitron font-black text-[6vh] text-white uppercase text-center tracking-wide leading-tight drop-shadow-lg break-words w-full px-[1vw]">
           Participante 2
         </h3>
         <div class="w-full bg-black/70 border border-white/10 rounded-2xl py-[2vh] text-center shadow-inner mb-[1vh]">
@@ -1484,6 +1484,9 @@
         serialPort = await navigator.serial.requestPort();
         await serialPort.open({ baudRate: 115200 });
 
+        // Monitora o evento nativo de desconexão do dispositivo (cabo puxado/desconectado)
+        navigator.serial.addEventListener('disconnect', handleSerialDisconnect);
+
         document.getElementById('serial-btn-text').innerText = "Dispositivo Conectado";
         document.getElementById('serial-status-dot').className = "w-2 h-2 rounded-full bg-emerald-500 animate-pulse";
         logEvent("Dispositivo ESP conectado com sucesso (Baud: 115200).");
@@ -1492,6 +1495,25 @@
       } catch (err) {
         logEvent(`Erro ao conectar dispositivo: ${err.message || err}`);
       }
+    }
+
+    // Tratador de desconexão acidental ou física do cabo USB
+    function handleSerialDisconnect(event) {
+      logEvent("⚠️ ATENÇÃO: Dispositivo ESP32 foi desconectado do computador!");
+      
+      if (serialReader) {
+        serialReader.cancel().catch(() => {});
+        serialReader = null;
+      }
+      if (serialPort) {
+        serialPort.close().catch(() => {});
+        serialPort = null;
+      }
+
+      document.getElementById('serial-btn-text').innerText = "Dispositivo Off \u2022 Conectar";
+      document.getElementById('serial-status-dot').className = "w-2 h-2 rounded-full bg-rose-500";
+      
+      navigator.serial.removeEventListener('disconnect', handleSerialDisconnect);
     }
 
     async function readSerialData() {
@@ -1522,9 +1544,13 @@
           }
         }
       } catch (error) {
-        logEvent(`Erro leitura Serial: ${error.message || error}`);
+        // Se a porta for desconectada de surpresa, o leitor dispara uma exceção
+        logEvent(`Conexão serial encerrada: ${error.message || error}`);
+        handleSerialDisconnect();
       } finally {
-        serialReader.releaseLock();
+        if (serialReader) {
+          serialReader.releaseLock();
+        }
       }
     }
   </script>
